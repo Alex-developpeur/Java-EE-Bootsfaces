@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ===== Déclaration des DAO ===== -->
+    <bean id="abstractDao" abstract="true">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <bean id="utilisateurDao" class="dev.fatum.www.consumer.impl.dao.UtilisateurDaoImpl"
+        parent="abstractDao"/>
+    <!-- ===== DaoFactory ===== -->
+    <bean id="daoFactory" class="dev.fatum.www.business.impl.DaoFactoryImpl">
+        <property name="utilisateurDao" ref="utilisateurDao"/>
+    </bean>
+</beans>

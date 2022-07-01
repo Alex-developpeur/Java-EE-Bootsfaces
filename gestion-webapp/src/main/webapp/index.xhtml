@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="./template.xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">	
+
+	<ui:define name="title">
+        accueil
+    </ui:define>
+
+	<ui:define name="topheader">
+		<b:row>
+			<b:column>
+				<h2>Accueil</h2>
+			</b:column>
+		</b:row>
+	</ui:define>
+
+	<ui:define name="body">
+		<b:row>
+			<b:column>
+				<p>Lorem ipsum dolor ...</p>
+			</b:column>
+		</b:row>
+		<b:row>
+			<b:column>
+				<b:link outcome="test/index.xhtml" value="index" />
+			</b:column>
+		</b:row>
+		<b:row>
+			<b:column>
+				<b:link outcome="test/dashboard.xhtml" value="Dashboard" />
+			</b:column>
+		</b:row>
+		
+		<style type="text/css">
+			html {
+				background: url("#{resource['img/index.jpg']}") no-repeat center fixed; 
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+			}
+		</style>
+		
+	</ui:define>
+	
+</ui:composition>

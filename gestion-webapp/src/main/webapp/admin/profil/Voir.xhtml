@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="../../template.xhtml"
+	xmlns:util="http://xmlns.jcp.org/jsf/composite/util"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+        #{bundle.ProfilTab}
+    </ui:define>
+
+	<ui:define name="topheader">
+		<b:iconAwesome value="file-text-o" />
+		#{bundle.ProfilTitle}
+	</ui:define>
+
+	<ui:define name="body">
+		<b:form>
+			<b:panel styleClass="largeur ombres">
+				<b:panelGrid colSpans="2,10">
+					<h:outputLabel value="#{bundle.TextNom} :" />
+					<h:outputText value="#{administrateurController.authenticated.nom}" />
+					<h:outputLabel value="#{bundle.TextEmail} :" />
+					<h:outputText
+						value="#{administrateurController.authenticated.email}" />
+				</b:panelGrid>
+			</b:panel>
+			<util:actionButtons bundleEntity="ModalDelAcount"
+				controller="#{administrateurController}" type="profilVoir" />
+		</b:form>
+	</ui:define>
+
+</ui:composition>

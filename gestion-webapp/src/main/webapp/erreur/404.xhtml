@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE HTML>
+<html lang="#{localeBean.language}"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<h:head>
+	<meta charset="utf-8" />
+	<title>#{bundle.ErreurTab}404</title>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['img/favicon.ico']}" />
+	<style type="text/css">
+		html {
+			background: url("#{resource['img/erreur-404.jpg']}") no-repeat fixed; 
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+		}
+		
+		a:link {
+			position: absolute;
+			bottom: 0;
+			bottom: 15%; left: 25%;
+			font-family: Courier New, monospace;
+			font-size: 2vw;
+			text-decoration: none;
+			color: black;
+		}
+		
+		a:visited {
+			text-decoration: none;
+			color: black;
+		}
+	</style>
+</h:head>
+
+<h:body>
+
+	<h:outputLink value="/facturation/index.xhtml">
+		La page que vous recherchez n'existe pas...
+		<br />
+		Retour à l'accueil.
+	</h:outputLink>
+	
+</h:body>
+</html>
+

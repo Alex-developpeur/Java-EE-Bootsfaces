@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="../template.xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+        #{bundle.AdministrationTab}
+    </ui:define>
+
+	<ui:define name="topheader">
+		<b:row>
+			<b:column>
+				#{bundle.AdministrationTitle}
+			</b:column>
+		</b:row>
+	</ui:define>
+
+	<ui:define name="body">
+		<b:row>
+			<b:column>
+				<p>Console d'administration</p>
+			</b:column>
+		</b:row>
+		<b:row>
+			<b:column>
+				<b:link outcome="Creer.xhtml" value="Creer" />
+			</b:column>
+		</b:row>
+		<b:row>
+			<b:column>
+				<b:link outcome="Voir.xhtml" value="Voir" />
+			</b:column>
+		</b:row>
+		<b:row>
+			<b:column>
+				<b:link outcome="Editer.xhtml" value="Editer" />
+			</b:column>
+		</b:row>
+		<b:row>
+			<b:column>
+				<b:link outcome="Liste.xhtml" value="Liste" />
+			</b:column>
+		</b:row>
+	</ui:define>
+</ui:composition>

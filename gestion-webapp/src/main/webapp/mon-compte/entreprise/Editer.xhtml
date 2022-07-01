@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="../../template.xhtml"
+	xmlns:util="http://xmlns.jcp.org/jsf/composite/util"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+        #{bundle.EntrepriseTab}
+    </ui:define>
+
+	<ui:define name="topheader">
+		<b:iconAwesome value="building-o" />
+		#{bundle.EntrepriseCreer}
+	</ui:define>
+
+	<ui:define name="body">
+		<b:form styleClass="largeur" id="formId">
+			<b:row>
+				<b:column>
+					<b:inputText id="raisonSociale"
+						label="#{bundle.EnterRaisonSociale}"
+						value="#{entrepriseController.selected.raisonSociale}"
+						placeholder="#{bundle.PlaceholderRaisonSociale}"
+						requiredMessage="#{bundle.RequiredField}" required="true"
+						onkeyup="validEntreprise();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:selectOneMenu label="#{bundle.ChooseFormeJuridique}"
+						value="#{entrepriseController.selected.formeJuridique}">
+						<f:facet name="prepend">
+				        	<b:iconAwesome name="list" />
+				        </f:facet>
+						<f:selectItem itemLabel="CAPE" itemValue="CAPE" />
+						<f:selectItem itemLabel="EI" itemValue="EI" />
+						<f:selectItem itemLabel="EIRL" itemValue="EIRL" />
+						<f:selectItem itemLabel="EURL" itemValue="EURL" />
+						<f:selectItem itemLabel="SA" itemValue="SA" />
+						<f:selectItem itemLabel="SARL" itemValue="SARL" />
+						<f:selectItem itemLabel="SAS" itemValue="SAS" />
+						<f:selectItem itemLabel="SASU" itemValue="SASU" />
+						<f:selectItem itemLabel="SNC" itemValue="SNC" />
+					</b:selectOneMenu>
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:selectOneMenu label="#{bundle.ChooseNature}"
+						value="#{entrepriseController.selected.nature}">
+						<f:facet name="prepend">
+				        	<b:iconAwesome name="list" />
+				        </f:facet>
+						<f:selectItem itemLabel="Agricole" itemValue="Agricole" />
+						<f:selectItem itemLabel="Artisanale" itemValue="Artisanale" />
+						<f:selectItem itemLabel="Commerciale" itemValue="Commerciale" />
+						<f:selectItem itemLabel="Couveuse" itemValue="Couveuse" />
+						<f:selectItem itemLabel="Industrielle" itemValue="Industrielle" />
+						<f:selectItem itemLabel="Libérale" itemValue="Libérale" />
+					</b:selectOneMenu>
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="siret"
+						label="#{bundle.EnterSiret}"
+						value="#{entrepriseController.selected.numeroSiret}"
+						placeholder="#{bundle.PlaceholderSiret}"
+						requiredMessage="#{bundle.RequiredField}" required="true"
+						onkeyup="validEntreprise();">
+						<f:facet name="prepend">
+							<h:outputText value="n°" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="tva"
+						label="#{bundle.EnterTva}"
+						value="#{entrepriseController.selected.numeroTva}"
+						placeholder="#{bundle.PlaceholderTva}"
+						onkeyup="validEntreprise();">
+						<f:facet name="prepend">
+							<h:outputText value="n°" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="rue"
+						label="#{bundle.EnterRue}"
+						value="#{entrepriseController.coordonnees.rue}"
+						placeholder="#{bundle.PlaceholderRue}"
+						requiredMessage="#{bundle.RequiredField}" required="true"
+						onkeyup="validEntreprise();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="codePostal"
+						label="#{bundle.EnterCodePostal}"
+						value="#{entrepriseController.coordonnees.codePostal}"
+						requiredMessage="#{bundle.RequiredField}" required="true"
+						placeholder="#{bundle.PlaceholderCodePostal}"
+						onkeyup="validEntreprise();">
+						<f:facet name="prepend">
+							<h:outputText value="n°" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="ville"
+						label="#{bundle.EnterVille}"
+						value="#{entrepriseController.coordonnees.ville}"
+						placeholder="#{bundle.PlaceholderVille}"
+						requiredMessage="#{bundle.RequiredField}" required="true">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="pays"
+						label="#{bundle.EntrerPays}"
+						value="#{entrepriseController.coordonnees.pays}"
+						placeholder="#{bundle.PlaceholderPays}"
+						onkeyup="validEntreprise();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="email"
+						label="#{bundle.EnterEmail}"
+						value="#{entrepriseController.coordonnees.email}"
+						placeholder="#{bundle.PlaceholderEmail}"
+						onkeyup="validEntreprise();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="tel"
+						label="#{bundle.EnterTel}"
+						value="#{entrepriseController.coordonnees.tel}"
+						placeholder="#{bundle.PlaceholderTel}"
+						onkeyup="validEntreprise();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="fax"
+						label="#{bundle.EnterFax}"
+						value="#{entrepriseController.coordonnees.fax}"
+						placeholder="#{bundle.PlaceholderFax}"
+						onkeyup="validEntreprise();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<util:actionButtons bundleEntity="ModalDelEntreprise"
+				controller="#{entrepriseController}" type="editer" />
+		</b:form>
+	</ui:define>
+
+</ui:composition>

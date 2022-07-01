@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="../../template.xhtml"
+	xmlns:util="http://xmlns.jcp.org/jsf/composite/util"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+        #{bundle.ParticuliersTab}
+    </ui:define>
+
+	<ui:define name="topheader">
+		<b:iconAwesome value="user" />
+		#{bundle.ParticulierCreer}
+	</ui:define>
+
+	<ui:define name="body">
+		<b:form styleClass="largeur" id="formId">
+			<b:row>
+				<b:column>
+					<b:selectOneMenu label="#{bundle.ChooseCivilite}"
+						value="#{personneController.selected.civilite}">
+						<f:facet name="prepend">
+				        	<b:iconAwesome name="list" />
+				        </f:facet>
+						<f:selectItem itemLabel="Mlle" itemValue="Mlle" />
+						<f:selectItem itemLabel="Mme" itemValue="Mme" />
+						<f:selectItem itemLabel="Mr." itemValue="Mr." />
+					</b:selectOneMenu>
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="nom"
+						label="#{bundle.EnterNom}"
+						value="#{personneController.selected.nom}"
+						placeholder="#{bundle.PlaceholderNom}"
+						requiredMessage="#{bundle.RequiredField}" required="true"
+						onkeyup="validPrticulier();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="prenom"
+						label="#{bundle.EnterPrenom}"
+						value="#{personneController.selected.prenom}"
+						placeholder="#{bundle.PlaceholderPrenom}"
+						requiredMessage="#{bundle.RequiredField}" required="true"
+						onkeyup="validPrticulier();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="rue"
+						label="#{bundle.EnterRue}"
+						value="#{personneController.coordonnees.rue}"
+						placeholder="#{bundle.PlaceholderRue}"
+						requiredMessage="#{bundle.RequiredField}" required="true"
+						onkeyup="validPrticulier();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="codePostal"
+						label="#{bundle.EnterCodePostal}"
+						value="#{personneController.coordonnees.codePostal}"
+						placeholder="#{bundle.PlaceholderCodePostal}"
+						requiredMessage="#{bundle.RequiredField}" required="true"
+						onkeyup="validPrticulier();">
+						<f:facet name="prepend">
+							<h:outputText value="n°" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="ville"
+						label="#{bundle.EnterVille}"
+						value="#{personneController.coordonnees.ville}"
+						placeholder="#{bundle.PlaceholderVille}"
+						requiredMessage="#{bundle.RequiredField}" required="true"
+						onkeyup="validPrticulier();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="pays"
+						label="#{bundle.EntrerPays}"
+						value="#{personneController.coordonnees.pays}"
+						placeholder="#{bundle.PlaceholderPays}"
+						onkeyup="validPrticulier();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="email"
+						label="#{bundle.EnterEmail}"
+						value="#{personneController.coordonnees.email}"
+						placeholder="#{bundle.PlaceholderEmail}"
+						onkeyup="validPrticulier();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="tel"
+						label="#{bundle.EnterTel}"
+						value="#{personneController.coordonnees.tel}"
+						placeholder="#{bundle.PlaceholderTel}"
+						onkeyup="validPrticulier();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="fax"
+						label="#{bundle.EnterFax}"
+						value="#{personneController.coordonnees.fax}"
+						placeholder="#{bundle.PlaceholderFax}"
+						onkeyup="validPrticulier();">
+						<f:facet name="prepend">
+							<b:iconAwesome name="list" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<util:actionButtons bundleEntity="ModalDelParticulier"
+				controller="#{personneController}" type="creer" />
+		</b:form>
+	</ui:define>
+
+</ui:composition>

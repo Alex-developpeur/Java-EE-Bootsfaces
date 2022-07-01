@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="../../template.xhtml"
+	xmlns:util="http://xmlns.jcp.org/jsf/composite/util"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+        #{bundle.UtilisateursTab}
+    </ui:define>
+
+	<ui:define name="topheader">
+		<b:iconAwesome value="edit" />
+		#{bundle.UtilisateursEditer}
+	</ui:define>
+
+	<ui:define name="body">
+		<b:form styleClass="largeur">
+			<b:row>
+				<b:column>
+					<b:inputText id="nom"
+						label="#{bundle.EnterNom}"
+						value="#{utilisateurController.selected.nom}"
+						placeholder="#{bundle.PlaceholderNom}">
+						<f:facet name="prepend">
+							<b:iconAwesome name="user" />
+						</f:facet>
+					</b:inputText>
+					<b:focus target="@previous" />
+					<b:message for="nom" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="email"
+						label="#{bundle.EnterEmail}"
+						value="#{utilisateurController.selected.email}"
+						placeholder="#{bundle.PlaceholderEmail}"
+						requiredMessage="#{bundle.RequiredField}" required="true">
+						<f:facet name="prepend">
+							<b:iconAwesome name="envelope" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputSecret id="mdp"
+						label="#{bundle.EnterPassword}"
+						value="#{utilisateurController.selected.mdp}"
+						placeholder="#{bundle.PlaceholderPassword}"
+						requiredMessage="#{bundle.RequiredField}" required="true">
+						<f:facet name="prepend">
+							<b:iconAwesome name="key" />
+						</f:facet>
+					</b:inputSecret>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<util:actionButtons bundleEntity="ModalDelUser"
+				controller="#{utilisateurController}" type="editer" />
+		</b:form>
+	</ui:define>
+
+</ui:composition>

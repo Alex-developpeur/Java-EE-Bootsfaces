@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<b:column col-sm="3" col-md="2" styleClass="sidebar" id="navItems">
+		<b:listLinks>
+			<b:navLink header="#{connexionController.authenticatedUser.nom}" />
+			<b:navLink iconAwesome="user" value="&#160;Compte" id="profil"
+				href="/gestion-webapp/mon-compte/profil/Voir.xhtml" />
+		</b:listLinks>
+
+		<b:listLinks>
+			<b:navLink header="Navigation" />
+			<b:navLink iconAwesome="dashboard" value="&#160;Accueil" id="index"
+				href="/gestion-webapp/mon-compte/index.xhtml" />
+			<b:navLink iconAwesome="building-o" value="&#160;Mon enteprise" id="entreprise"
+				href="/gestion-webapp/mon-compte/entreprise/Voir.xhtml" />
+			<b:navLink iconAwesome="users" value="Clients proffessionnels" id="clients-proffessionnels"
+				href="/gestion-webapp/mon-compte/clients-proffessionnels/Liste.xhtml" />
+			<b:navLink iconAwesome="users" value="Clients particuliers" id="clients-particuliers"
+				href="/gestion-webapp/mon-compte/clients-particuliers/Liste.xhtml" />
+		</b:listLinks>
+	</b:column>
+
+</ui:composition>

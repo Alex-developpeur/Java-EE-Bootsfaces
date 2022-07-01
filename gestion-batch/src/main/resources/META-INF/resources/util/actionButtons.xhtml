@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:composite="http://xmlns.jcp.org/jsf/composite"
+	xmlns:util="http://xmlns.jcp.org/jsf/composite/util"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<head>
+<title>(For validation only)</title>
+	</head>
+	<body>
+
+		<composite:interface>
+			<composite:attribute name="controller" />
+			<composite:attribute name="bundleEntity" />
+			<composite:attribute name="type" />
+		</composite:interface>
+
+		<composite:implementation>
+			<!-- CREER -->
+			<ui:fragment rendered="#{cc.attrs.type eq 'creer'}">
+				<b:row>
+					<b:column>
+						<b:commandButton action="#{cc.attrs.controller.create}"
+							iconAwesome="save" value="#{bundle.OKButton}" look="primary"
+							styleClass="form-button" update="@form" />
+						<b:commandButton action="#{cc.attrs.controller.prepareList}"
+							iconAwesome="times" value="#{bundle.CancelButton}" look="danger"
+							styleClass="form-button" immediate="true" />
+					</b:column>
+				</b:row>
+			</ui:fragment>
+			<!-- LISTE -->
+			<ui:fragment rendered="#{cc.attrs.type eq 'liste'}">
+				<b:commandLink action="#{cc.attrs.controller.prepareView}"
+					iconAwesome="eye" value="&#160;#{bundle.ViewButton}"
+					styleClass="action-buttons text-success" />
+				<b:commandLink action="#{cc.attrs.controller.prepareEdit}"
+					iconAwesome="edit" value="&#160;#{bundle.EditButton}"
+					styleClass="action-buttons text-primary" />
+				<b:commandLink onclick="$('.#{item.id}').modal('show')"
+					iconAwesome="trash-o" value="&#160;#{bundle.DelButton}"
+					styleClass="action-buttons text-danger" />
+				<util:modal controller="#{cc.attrs.controller}"
+					bundleEntity="#{cc.attrs.bundleEntity}" type="#{cc.attrs.type}" />
+			</ui:fragment>
+			<!-- VOIR -->
+			<ui:fragment rendered="#{cc.attrs.type eq 'voir'}">
+				<b:row>
+					<b:column>
+						<b:commandButton action="#{cc.attrs.controller.prepareList}"
+							iconAwesome="list-alt" value="#{bundle.ListButton}"
+							look="primary" styleClass="form-button" />
+						<b:button outcome="Editer?faces-redirect=true"
+							iconAwesome="edit" value="#{bundle.EditButton}" look="info"
+							styleClass="form-button" />
+						<b:button onclick="$('.validationModal').modal('show')"
+							iconAwesome="trash-o" value="#{bundle.DelButton}" look="danger"
+							styleClass="form-button" />
+						<util:modal controller="#{cc.attrs.controller}"
+							bundleEntity="#{cc.attrs.bundleEntity}" type="#{cc.attrs.type}" />
+					</b:column>
+				</b:row>
+			</ui:fragment>
+			<!-- EDITER -->
+			<ui:fragment rendered="#{cc.attrs.type eq 'editer'}">
+				<b:row>
+					<b:column>
+						<b:commandButton action="#{cc.attrs.controller.update}"
+							iconAwesome="save" value="#{bundle.OKButton}" look="primary"
+							styleClass="form-button" update="@form" />
+						<b:button outcome="Voir?faces-redirect=true"
+							iconAwesome="times" value="#{bundle.CancelButton}" look="danger"
+							styleClass="form-button" immediate="true" />
+					</b:column>
+				</b:row>
+			</ui:fragment>
+			<!-- PROFIL VIEW -->
+			<ui:fragment rendered="#{cc.attrs.type eq 'profilVoir'}">
+				<b:row>
+					<b:column>
+						<b:commandButton action="Editer?faces-redirect=true"
+							iconAwesome="edit" value="#{bundle.EditButton}" look="info"
+							styleClass="form-button" />
+						<b:button outcome="EditerMDP?faces-redirect=true"
+							iconAwesome="lock" value="#{bundle.EditMdpButton}" look="primary"
+							style="margin-right: 20px;" />
+						<b:button onclick="$('.validationModal').modal('show')"
+							iconAwesome="trash-o" value="#{bundle.DelAccount}" look="danger" />
+						<util:modal controller="#{cc.attrs.controller}"
+							bundleEntity="#{cc.attrs.bundleEntity}" type="#{cc.attrs.type}" />
+					</b:column>
+				</b:row>
+			</ui:fragment>
+			<!-- PROFIL EDIT -->
+			<ui:fragment rendered="#{cc.attrs.type eq 'profilEditer'}">
+				<b:row>
+					<b:column>
+						<b:commandButton action="#{cc.attrs.controller.profilUpdate}"
+							iconAwesome="save" value="#{bundle.OKButton}" look="primary"
+							styleClass="form-button" update="@form" />
+						<b:button outcome="Voir?faces-redirect=true"
+							iconAwesome="times" value="#{bundle.CancelButton}" look="danger"
+							styleClass="form-button" immediate="true" />
+					</b:column>
+				</b:row>
+			</ui:fragment>
+			<!-- PROFIL EDIT MDP-->
+			<ui:fragment rendered="#{cc.attrs.type eq 'profilEditerMdp'}">
+				<b:row>
+					<b:column>
+						<b:commandButton action="#{cc.attrs.controller.updatePassword}"
+							iconAwesome="save" value="#{bundle.OKButton}" look="primary"
+							styleClass="form-button" update="@form" />
+						<b:button outcome="Voir?faces-redirect=true"
+							iconAwesome="times" value="#{bundle.CancelButton}" look="danger"
+							styleClass="form-button" immediate="true" />
+					</b:column>
+				</b:row>
+			</ui:fragment>
+
+		</composite:implementation>
+
+	</body>
+</ui:composition>

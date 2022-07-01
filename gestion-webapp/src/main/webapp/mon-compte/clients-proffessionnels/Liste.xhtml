@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="../../template.xhtml"
+	xmlns:util="http://xmlns.jcp.org/jsf/composite/util"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+        #{bundle.ProfessionnelsTab}
+    </ui:define>
+
+	<ui:define name="topheader">
+		<b:iconAwesome value="list-alt" />
+		#{bundle.ProfessionnelsListe}
+	</ui:define>
+
+	<ui:define name="body">
+
+		<b:form>
+			<b:dataTable value="#{entrepriseController.items}" var="item" border="false">
+				<b:dataTableColumn value="#{item.raisonSociale} #{item.formeJuridique}">
+					<f:facet name="header">
+						<ul>
+							<li><b:iconAwesome name="building-o" />&#160;&#160;#{bundle.TextRaisonSociale}</li>
+						</ul>
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{item.nature}">
+					<f:facet name="header">
+						<ul>
+							<li><b:iconAwesome name="tag" />&#160;&#160;#{bundle.TextNature}</li>
+						</ul>
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn class="text-center">
+					<f:facet name="header">
+						<ul>
+							<li><b:iconAwesome name="cogs" />&#160;&#160;#{bundle.Actions}</li>
+						</ul>
+					</f:facet>
+					<util:actionButtons bundleEntity="ModalDelProfessionnel"
+						controller="#{entrepriseController}" type="liste" />
+					<f:facet name="footer">
+						<ul class="text-center">
+							<li><b:commandLink
+									action="#{entrepriseController.prepareCreate}"
+									iconAwesome="user-plus" value="#{bundle.ProfessionnelNew}"
+									styleClass="action-buttons text-muted" /></li>
+						</ul>
+					</f:facet>
+				</b:dataTableColumn>
+			</b:dataTable>
+		</b:form>
+
+	</ui:define>
+
+</ui:composition>

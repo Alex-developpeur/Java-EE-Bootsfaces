@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- =============================================================== -->
+    <!-- Informations du projet -->
+    <!-- =============================================================== -->
+    <!-- ===== Projet Parent Maven ===== -->
+    <parent>
+        <groupId>dev.fatum.www</groupId>
+        <artifactId>gestion</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- ===== Informations Maven ===== -->
+    <artifactId>gestion-model</artifactId>
+    <packaging>jar</packaging>
+
+    <!-- ===== Informations générales ===== -->
+    <name>${projectName} - Model</name>
+
+    <!-- =============================================================== -->
+    <!-- Dépendances -->
+    <!-- =============================================================== -->
+    <dependencies>    
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.sun.xml.bind</groupId>
+            <artifactId>jaxb-impl</artifactId>
+        </dependency>
+       
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+                
+    </dependencies>
+
+    <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>false</skip>
+                    <executable>/home/alex/developpement/java/payara5/glassfish/bin/asadmin</executable>
+                    <successCodes>
+                        <successCode>0</successCode>
+                        <successCode>1</successCode>
+                    </successCodes>
+                    <arguments>
+                        <argument>create-auth-realm</argument>
+                        <argument>--classname=com.sun.enterprise.security.auth.realm.jdbc.JDBCRealm</argument>
+                        <argument>--property=jaas-context=jdbcRealm:datasource-jndi=java\:global/GestionDataSource:user-table=gestion.PROFIL:user-name-column=email:password-column=mdp:group-table=gestion.PROFIL_GROUPES:group-table-user-name-column=email:group-name-column=nom:digest-algorithm=none</argument>
+                        <argument>gestionRealm</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="../../template.xhtml"
+	xmlns:util="http://xmlns.jcp.org/jsf/composite/util"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+        #{bundle.GroupesTab}
+    </ui:define>
+
+	<ui:define name="topheader">
+		<b:iconAwesome value="edit" />
+		#{bundle.GroupesEditer}
+	</ui:define>
+
+	<ui:define name="body">
+		<b:form styleClass="largeur">
+			<b:row>
+				<b:column>
+					<b:inputText id="nom"
+						label="#{bundle.EnterNom}"
+						value="#{groupesController.selected.nom}"
+						placeholder="#{bundle.PlaceholderNom}"
+						requiredMessage="#{bundle.RequiredField}" required="true">
+						<f:facet name="prepend">
+							<b:iconAwesome name="users" />
+						</f:facet>
+					</b:inputText>
+					<b:focus target="@previous" />
+					<b:message for="nom" />
+				</b:column>
+			</b:row>
+			<b:row>
+				<b:column>
+					<b:inputText id="description"
+						label="#{bundle.EnterDescription}"
+						value="#{groupesController.selected.description}"
+						placeholder="#{bundle.PlaceholderDescription}">
+						<f:facet name="prepend">
+							<b:iconAwesome name="align-left" />
+						</f:facet>
+					</b:inputText>
+					<b:message for="@previous" />
+				</b:column>
+			</b:row>
+			<util:actionButtons bundleEntity="ModalDelUser"
+				controller="#{groupesController}" type="editer" />
+		</b:form>
+	</ui:define>
+
+</ui:composition>

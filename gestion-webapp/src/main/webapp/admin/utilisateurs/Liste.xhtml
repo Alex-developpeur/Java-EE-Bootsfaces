@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	template="../../template.xhtml"
+	xmlns:util="http://xmlns.jcp.org/jsf/composite/util"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<ui:define name="title">
+        #{bundle.UtilisateursTab}
+    </ui:define>
+
+	<ui:define name="topheader">
+		<b:iconAwesome value="list-alt" />
+		#{bundle.UtilisateursListe}
+	</ui:define>
+
+	<ui:define name="body">
+
+		<b:form>
+			<b:dataTable value="#{utilisateurController.items}" var="item" border="false">
+				<b:dataTableColumn value="#{item.id}">
+					<f:facet name="header">
+						<ul>
+							<li><b:iconAwesome name="database" />&#160;&#160;#{bundle.TextId}</li>
+						</ul>
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{item.nom}">
+					<f:facet name="header">
+						<ul>
+							<li><b:iconAwesome name="user" />&#160;&#160;#{bundle.TextNom}</li>
+						</ul>
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn value="#{item.email}">
+					<f:facet name="header">
+						<ul>
+							<li><b:iconAwesome name="envelope" />&#160;&#160;#{bundle.TextEmail}</li>
+						</ul>
+					</f:facet>
+				</b:dataTableColumn>
+				<b:dataTableColumn class="text-center">
+					<f:facet name="header">
+						<ul>
+							<li><b:iconAwesome name="cogs" />&#160;&#160;#{bundle.Actions}</li>
+						</ul>
+					</f:facet>
+					<util:actionButtons bundleEntity="ModalDelUser"
+						controller="#{utilisateurController}" type="liste" />
+					<f:facet name="footer">
+						<ul class="text-center">
+							<li><b:commandLink
+									action="#{utilisateurController.prepareCreate}"
+									iconAwesome="user-plus" value="#{bundle.UitilisateurNew}"
+									styleClass="action-buttons text-muted" /></li>
+						</ul>
+					</f:facet>
+				</b:dataTableColumn>
+			</b:dataTable>
+		</b:form>
+
+	</ui:define>
+
+</ui:composition>

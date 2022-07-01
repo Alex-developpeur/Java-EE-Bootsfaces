@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:b="http://bootsfaces.net/ui">
+
+	<b:navBar brand="&#160;Facturation" brandHref="/gestion-webapp/index.xhtml" inverse="true"
+		fixed="top" fluid="true" brandImg="#{resource['img/logo.ico']}">
+		<b:form>
+			<b:navbarLinks class="pull-right">
+				<c:choose>
+					<c:when test="#{connexionController.logged}">
+						<b:navCommandLink value="Déconnexion"
+							action="#{connexionController.logout}"
+							iconAwesome="sign-out" />
+					</c:when>
+					<c:otherwise>
+						<b:navLink value="Nouveau" href="/gestion-webapp/nouveau.xhtml"
+							iconAwesome="user-plus" />
+						<b:navLink value="Connexion" href="/gestion-webapp/connexion.xhtml"
+							iconAwesome="shield" />
+					</c:otherwise>
+				</c:choose>
+			</b:navbarLinks>
+		</b:form>
+		<b:form styleClass="navbar-form navbar-right">
+			<div class="form-group">
+				<b:inputText placeholder="Chercher..." fieldSize="sm" />
+			</div>
+		</b:form>
+	</b:navBar>
+
+</ui:composition>

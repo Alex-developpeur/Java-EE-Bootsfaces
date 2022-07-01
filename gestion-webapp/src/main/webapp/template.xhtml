@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:b="http://bootsfaces.net/ui">
+
+<h:head>
+	<meta charset="utf-8" />
+	<title>#{bundle.TabName}<ui:insert name="title" />
+	</title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['img/favicon.ico']}" />
+</h:head>
+
+<h:body>
+
+	<ui:insert name="top">
+		<ui:include src="top.xhtml" />
+	</ui:insert>
+
+	<c:choose>
+		<c:when test="#{connexionController.logged}">
+			<c:choose>
+				<c:when test="#{connexionController.admin}">
+					<ui:insert name="menu">
+						<ui:include src="admin/menu.xhtml" />
+					</ui:insert>
+				</c:when>
+				<c:otherwise>
+					<ui:insert name="menu">
+						<ui:include src="mon-compte/menu.xhtml" />
+					</ui:insert>
+				</c:otherwise>
+			</c:choose>
+		</c:when>
+	</c:choose>
+
+	<b:column col-sm="9" offset-sm="3" col-md="10" offset="2"
+		styleClass="main">
+		<b:container>
+		
+			<header id="header" class="titre">
+				<b:row>
+					<b:column>
+						<ui:insert name="topheader" />
+					</b:column>
+				</b:row>
+			</header>
+
+			<section>
+				<ui:insert name="body" />
+			</section>
+
+		</b:container>
+	</b:column>
+	
+	<b:growl placementFrom="bottom" delay="10000" globalOnly="true"
+		allowDismiss="true" show-detail="true" escape="false" />
+
+	<footer id="footer">
+		<ui:insert name="bottom">
+			<ui:include src="bottom.xhtml" />
+		</ui:insert>
+	</footer>
+
+	<h:outputScript library="js" name="script.js" />
+
+</h:body>
+</html>

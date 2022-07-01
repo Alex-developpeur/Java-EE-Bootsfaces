@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+           
+    <!-- Chargement du fichier properties contenant
+        la configuration de la datasource vers DB_GESTION  -->
+        
+    <!-- Inclusion d'autres fichiers de contexte Spring -->
+    <import resource="classpath:/org/example/demo/gestion/consumer/consumerContext.xml" />
+    <import resource="classpath:/org/example/demo/gestion/business/businessContext.xml" />
+    <import resource="classpath:/org/example/demo/gestion/jdbc/jdbcContext.xml" />
+</beans>
